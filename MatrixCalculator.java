@@ -3,10 +3,11 @@ public class MatrixCalculator {
 	//Error messages
 	static String unsupErr = "Sorry, that isn't a supported operation.";
 
-	public static void main(String[] args) {
-		String[] keywords = new String[] {"matrix", "q", "operations"}; //holds a list of all supported operations
+	//set up global Scanner
+	static Scanner input = new Scanner(System.in);
 
-		Scanner input = new Scanner(System.in);
+	public static void main(String[] args) {
+		String[] keywords = new String[] {"matrix", "mulitply", "q", "operations"}; //holds a list of all supported operations
 
 		//input loop
 		boolean end = false;
@@ -23,6 +24,8 @@ public class MatrixCalculator {
 						}
 						System.out.println();
 					}
+					break;
+				case "multiply":
 					break;
 				case "q": //quits the program
 					end = true;
