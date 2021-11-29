@@ -29,9 +29,10 @@ public class MatrixCalculator {
 					while (true) {
 						double[][] matrix1 = matrixMaker(input);
 						double[][] matrix2 = matrixMaker(input);
-						if (matrix1.length != matrix2.length || matrix1[0].length != matrix2[0].length) {
-							System.out.print("Please enter two matrices of equal dimensions.\n>");
+						if (matrix1.length != matrix2[0].length) {
+							System.out.print("Please enter two matrices of valid dimensions.\n>");
 						} else {
+							printMatrix(matrixProduct(matrix1, matrix2));
 							break;
 						}
 					}
@@ -51,7 +52,7 @@ public class MatrixCalculator {
 
 	public static double[][] matrixMaker(Scanner input) {
 		String valDimenErr = "Please enter two whole numbers.\n>";
-		String dimMismatchError = "That line is not compatible with your chosen dimensions.\n>";
+		String dimMismatchError = "That line is not compatible with your chosen dimensions";
 		String numLineErr = "Please enter a series of numbers\n>";
 
 		//Get the dimensions from the user
@@ -87,7 +88,7 @@ public class MatrixCalculator {
 					String[] dimensions = line.split(" ");
 
 					if (dimensions.length != dim2) {
-						System.out.print(dimMismatchError);
+						System.out.println(dimMismatchError);
 					} else {
 						for (int j=0; j < dim2; j++) {
 							matrix[i][j] = Double.parseDouble(dimensions[j]);
@@ -103,21 +104,22 @@ public class MatrixCalculator {
 	}
 
 
-	/*public double[][] matrixProduct(double[][] matrix1, double[][] matrix1) {
-		double[][] finalMatrix = new double[matrix1.length][matrix1[0].length];
+	public static double[][] matrixProduct(double[][] matrix1, double[][] matrix2) {
+		double[][] finalMatrix = new double[matrix1.length][matrix2[0].length];
 		for (int i = 0; i < matrix1.length; i++) {
-			for (int j = 0; j < matrix1[0].length; j++) {
-				for (int k = 0; k < matrix1[0]; k++) {
-					
+			for (int j = 0; j < matrix2[0].length; j++) {
+				finalMatrix[i][j] = 0;
+				for (int k = 0; k < matrix1[0].length; k++) {
+					finalMatrix[i][j] += matrix1[i][k] * matrix2[k][j];
 				}
-				finalMatrix[i][j] = matrix1[i][j] * matrix2[j][i];
+				
 			}
 		}
 
 		return finalMatrix;
-	}*/
+	}
 
-	public void printMatrix(double[][] matrix) {
+	public static void printMatrix(double[][] matrix) {
 		for (int i=0; i < matrix.length; i++) {
 			for (int j=0; j < matrix[i].length; j++) {
 				System.out.print(matrix[i][j] + " ");
