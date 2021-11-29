@@ -26,6 +26,15 @@ public class MatrixCalculator {
 					}
 					break;
 				case "multiply":
+					while (true) {
+						double[][] matrix1 = matrixMaker(input);
+						double[][] matrix2 = matrixMaker(input);
+						if (matrix1.length != matrix2.length || matrix1[0].length != matrix2[0].length) {
+							System.out.print("Please enter two matrices of equal dimensions.\n>");
+						} else {
+							break;
+						}
+					}
 					break;
 				case "q": //quits the program
 					end = true;
@@ -69,10 +78,11 @@ public class MatrixCalculator {
 		double[][] matrix = new double[dim1][dim2];
 
 		//Get the matrix from the user
-		System.out.print("Please enter the lines of your matrix, one by one.\n>");
+		System.out.println("Please enter the lines of your matrix, one by one.");
 		for (int i=0; i < dim1; i++) {
 			while(true) {
 				try {
+					System.out.print(">");
 					String line = input.nextLine();
 					String[] dimensions = line.split(" ");
 
@@ -91,4 +101,30 @@ public class MatrixCalculator {
 		}
 		return matrix;
 	}
+
+
+	/*public double[][] matrixProduct(double[][] matrix1, double[][] matrix1) {
+		double[][] finalMatrix = new double[matrix1.length][matrix1[0].length];
+		for (int i = 0; i < matrix1.length; i++) {
+			for (int j = 0; j < matrix1[0].length; j++) {
+				for (int k = 0; k < matrix1[0]; k++) {
+					
+				}
+				finalMatrix[i][j] = matrix1[i][j] * matrix2[j][i];
+			}
+		}
+
+		return finalMatrix;
+	}*/
+
+	public void printMatrix(double[][] matrix) {
+		for (int i=0; i < matrix.length; i++) {
+			for (int j=0; j < matrix[i].length; j++) {
+				System.out.print(matrix[i][j] + " ");
+			}
+			System.out.println();
+		}
+	}
+
+
 }
