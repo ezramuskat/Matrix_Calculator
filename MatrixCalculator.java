@@ -7,7 +7,7 @@ public class MatrixCalculator {
 	static Scanner input = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		String[] keywords = new String[] {"matrix", "mulitply", "q", "operations"}; //holds a list of all supported operations
+		String keywords = "matrix, mulitply, q, operations"; //holds a list of all currently supported operations
 
 		//input loop
 		boolean end = false;
@@ -17,13 +17,7 @@ public class MatrixCalculator {
 			String operation = input.nextLine();
 			switch (operation) {
 				case "matrix":
-					double[][] newMatrix = matrixMaker(input);
-					for (int i=0; i < newMatrix.length; i++) {
-						for (int j=0; j < newMatrix[i].length; j++) {
-							System.out.print(newMatrix[i][j] + " ");
-						}
-						System.out.println();
-					}
+					printMatrix(matrixMaker(input));
 					break;
 				case "multiply":
 					while (true) {
@@ -41,8 +35,7 @@ public class MatrixCalculator {
 					end = true;
 					break;
 				case "operations": //prints out a list of all currently supported operations
-					String opString = Arrays.toString(keywords);
-					System.out.println(opString.substring(1, opString.length()-1));
+					System.out.println(keywords);
 					break;
 				default:
 					System.out.println(unsupErr);
@@ -115,7 +108,6 @@ public class MatrixCalculator {
 				
 			}
 		}
-
 		return finalMatrix;
 	}
 
